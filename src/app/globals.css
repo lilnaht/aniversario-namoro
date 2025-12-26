@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+:root {
+  --rose-50: #fff1f6;
+  --rose-100: #ffe1ec;
+  --rose-200: #ffc7dc;
+  --rose-300: #ffb1cf;
+  --rose-500: #e85d8a;
+  --rose-600: #d54a79;
+  --ink: #3a1f2d;
+  --card: #fff7fb;
+  --card-edge: #ffe7f0;
+  --shadow: 0 20px 60px rgba(58, 31, 45, 0.15);
+}
+
+@theme inline {
+  --color-background: var(--rose-50);
+  --color-foreground: var(--ink);
+  --color-primary: var(--rose-500);
+  --color-primary-strong: var(--rose-600);
+  --color-card: var(--card);
+  --color-card-edge: var(--card-edge);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255, 226, 237, 0.9) 0%, transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(255, 214, 230, 0.8) 0%, transparent 40%),
+    radial-gradient(circle at 20% 85%, rgba(255, 210, 230, 0.8) 0%, transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(255, 200, 222, 0.75) 0%, transparent 50%),
+    linear-gradient(180deg, #fff1f7 0%, #ffe6f0 100%);
+  color: var(--ink);
+  font-family: var(--font-body), "Trebuchet MS", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display), "Times New Roman", serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgba(232, 93, 138, 0.5);
+  outline-offset: 2px;
+}
+
+.site-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-shell {
+  background: var(--card);
+  border: 1px solid var(--card-edge);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+}
+
+.floating-heart {
+  --heart-scale: 1;
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  background: rgba(232, 93, 138, 0.22);
+  transform: rotate(45deg) scale(var(--heart-scale));
+  border-radius: 4px;
+  animation: float-heart 16s linear infinite;
+  filter: blur(0.2px);
+  box-shadow: 0 12px 28px rgba(232, 93, 138, 0.16);
+}
+
+.floating-heart::before,
+.floating-heart::after {
+  content: "";
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  background: rgba(232, 93, 138, 0.22);
+  border-radius: 50%;
+}
+
+.floating-heart::before {
+  left: -17px;
+  top: 0;
+}
+
+.floating-heart::after {
+  top: -17px;
+  left: 0;
+}
+
+@keyframes float-heart {
+  0% {
+    transform: translateY(80px) rotate(45deg) scale(var(--heart-scale));
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-260px) rotate(45deg) scale(var(--heart-scale));
+    opacity: 0;
+  }
+}
+
+.floating-bubble {
+  --bubble-scale: 1;
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.45),
+    rgba(255, 204, 224, 0.15) 55%,
+    transparent 70%
+  );
+  opacity: 0.6;
+  transform: scale(var(--bubble-scale));
+  filter: blur(0.4px);
+  animation: float-bubble 32s ease-in-out infinite;
+}
+
+.floating-sparkle {
+  --sparkle-scale: 1;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 12px rgba(255, 210, 230, 0.9);
+  transform: scale(var(--sparkle-scale));
+  opacity: 0.7;
+  animation: twinkle 14s ease-in-out infinite;
+}
+
+@keyframes float-bubble {
+  0% {
+    transform: translateY(0) scale(var(--bubble-scale));
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(-40px) scale(calc(var(--bubble-scale) * 1.05));
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-80px) scale(var(--bubble-scale));
+    opacity: 0.15;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .floating-heart,
+  .floating-bubble,
+  .floating-sparkle {
+    animation: none;
+  }
+}
