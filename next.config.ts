@@ -11,7 +11,11 @@ if (supabaseUrl) {
   }
 }
 
-const remotePatterns = [];
+type RemotePattern = NonNullable<
+  NonNullable<NextConfig["images"]>["remotePatterns"]
+>[number];
+
+const remotePatterns: RemotePattern[] = [];
 
 if (supabaseHost) {
   remotePatterns.push({
