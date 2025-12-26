@@ -1,8 +1,21 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import FloatingHearts from "@/components/site/FloatingHearts";
+import { getSettings } from "@/lib/data/public";
+import { getDaysUntil } from "@/lib/date";
 
-export default function SiteLayout({ children }: { children: ReactNode }) {
+export default async function SiteLayout({ children }: { children: ReactNode }) {
+  const settings = await getSettings();
+  const weddingDays = getDaysUntil(settings?.wedding_date ?? null);
+  const weddingMessage =
+    weddingDays === null
+      ? null
+      : weddingDays > 0
+        ? `Faltam ${weddingDays} dias para sermos um 💕.`
+        : weddingDays === 0
+          ? "Hoje é o nosso grande dia!"
+          : `Nosso casamento foi ha ${Math.abs(weddingDays)} dias.`;
+
   return (
     <div className="site-shell relative overflow-hidden">
       <FloatingHearts />
@@ -19,7 +32,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
               Nathan & Gabriela
             </p>
             <h1 className="mt-2 text-3xl font-semibold text-rose-700 md:text-4xl">
-              Nossa história
+              Nossa historia
             </h1>
           </div>
           <nav className="flex gap-3 text-sm font-medium text-rose-700">
@@ -48,7 +61,12 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
         <div className="mx-auto w-full max-w-6xl">{children}</div>
       </main>
       <footer className="relative z-10 py-10 text-center text-sm text-rose-600/80">
-        Feito com carinho para lembrar cada detalhe do nosso amor.
+        <p>Feito com carinho para lembrar cada detalhe do nosso amor.</p>
+        {weddingMessage ? (
+          <p className="mt-2 text-xs uppercase tracking-[0.2em] text-rose-500/80">
+            {weddingMessage}
+          </p>
+        ) : null}
       </footer>
     </div>
   );

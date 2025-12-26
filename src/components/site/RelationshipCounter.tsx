@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { parseDateInput } from "@/lib/date";
 
 type CounterProps = {
   startDate: string | null;
@@ -48,16 +49,6 @@ function calculateDiff(start: Date, now: Date): CounterState {
     days: Math.max(0, days),
     hours: Math.max(0, hours),
   };
-}
-
-function parseDateInput(dateString: string): Date | null {
-  const parts = dateString.split("-").map(Number);
-  if (parts.length >= 3 && parts.every((value) => Number.isFinite(value))) {
-    const [year, month, day] = parts;
-    return new Date(year, month - 1, day);
-  }
-  const fallback = new Date(dateString);
-  return Number.isNaN(fallback.getTime()) ? null : fallback;
 }
 
 export default function RelationshipCounter({ startDate }: CounterProps) {

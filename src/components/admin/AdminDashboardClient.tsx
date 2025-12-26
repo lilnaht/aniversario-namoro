@@ -109,13 +109,22 @@ export default function AdminDashboardClient({
       <section className="grid gap-6 rounded-3xl border border-rose-100 bg-white/70 p-6 shadow-sm">
         <h3 className="text-xl font-semibold text-rose-700">Configuracoes</h3>
         <form onSubmit={(event) => handleSubmit(event, saveSettingsAction, "Configuracoes salvas.")}>
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-3">
             <label className="text-sm font-medium text-rose-700">
               Data de inicio do namoro
               <input
                 type="date"
                 name="relationshipStartDate"
                 defaultValue={settings?.relationship_start_date ?? ""}
+                className="mt-2 w-full rounded-2xl border border-rose-200 bg-white px-4 py-3 text-sm"
+              />
+            </label>
+            <label className="text-sm font-medium text-rose-700">
+              Data do casamento
+              <input
+                type="date"
+                name="weddingDate"
+                defaultValue={settings?.wedding_date ?? ""}
                 className="mt-2 w-full rounded-2xl border border-rose-200 bg-white px-4 py-3 text-sm"
               />
             </label>

@@ -6,6 +6,7 @@ const nowIso = () => new Date().toISOString();
 const defaultSettings: Settings = {
   id: 1,
   relationship_start_date: "2024-01-01",
+  wedding_date: "2026-06-15",
   spotify_track_url: "https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT",
   updated_at: nowIso(),
 };

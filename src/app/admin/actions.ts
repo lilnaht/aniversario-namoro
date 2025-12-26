@@ -97,10 +97,12 @@ export async function saveSettingsAction(formData: FormData): Promise<ActionResu
   try {
     const payload = settingsSchema.parse({
       relationshipStartDate: formData.get("relationshipStartDate") || null,
+      weddingDate: formData.get("weddingDate") || null,
       spotifyTrackUrl: formData.get("spotifyTrackUrl") || null,
     });
     await saveSettings({
       relationship_start_date: payload.relationshipStartDate || null,
+      wedding_date: payload.weddingDate || null,
       spotify_track_url: payload.spotifyTrackUrl || null,
     });
     revalidateSite();

@@ -1,6 +1,7 @@
 export type Settings = {
   id: number;
   relationship_start_date: string | null;
+  wedding_date: string | null;
   spotify_track_url: string | null;
   updated_at: string;
 };

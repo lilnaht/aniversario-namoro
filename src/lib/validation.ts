@@ -6,6 +6,7 @@ export const quoteSchema = z.object({
 
 export const settingsSchema = z.object({
   relationshipStartDate: z.string().trim().optional().nullable(),
+  weddingDate: z.string().trim().optional().nullable(),
   spotifyTrackUrl: z.string().trim().optional().nullable(),
 });
 
