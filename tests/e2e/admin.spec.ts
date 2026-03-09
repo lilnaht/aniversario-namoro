@@ -42,6 +42,8 @@ test("admin flow updates settings and timeline", async ({ page }) => {
   expect(imageCount).toBeGreaterThan(0);
 
   await page.goto("/");
-  await expect(page.getByText("Tempo de namoro")).toBeVisible();
+  await expect(
+  await expect(
+  page.getByRole("heading", { name: "Nossa historia" })).toBeVisible();
   await expect(page.locator("iframe[title='Spotify']")).toBeVisible();
 });
